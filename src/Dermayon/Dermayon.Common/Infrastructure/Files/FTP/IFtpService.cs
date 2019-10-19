@@ -14,7 +14,7 @@ namespace Dermayon.Common.Infrastructure.Files.FTP
         Task<byte[]> DownloadAsync(string Path, string Filename);
         bool DownloadToLocal(string localPath, string Path, string Filename);
         bool Upload(byte[] uploadedFile, string Path, string Filename, bool withCreateDirectory = false);
-        Task<bool> UploadAsync(byte[] uploadedFile, string Path, string Filename, bool withCreateDirectory = false)
+        Task<bool> UploadAsync(byte[] uploadedFile, string Path, string Filename, bool withCreateDirectory = false);
         void Remove(string Path, string Filename);
         Task RemoveAsync(string Path, string Filename);
         string GetCheckSum(string path, string fileName, FtpHashAlgorithm algorithm);
