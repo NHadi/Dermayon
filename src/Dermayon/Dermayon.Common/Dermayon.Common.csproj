@@ -6,13 +6,20 @@
 
   <ItemGroup>
     <PackageReference Include="Confluent.Kafka" Version="0.11.6" />
+    <PackageReference Include="Ensure.That" Version="8.1.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.0.0" />
+    <PackageReference Include="MongoDB.Bson" Version="2.9.2" />
+    <PackageReference Include="MongoDB.Driver" Version="2.9.2" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Serilog" Version="2.9.0" />
     <PackageReference Include="Serilog.Exceptions" Version="5.3.1" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
     <PackageReference Include="Serilog.Sinks.ElasticSearch" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Infrastructure\Data\Repositories\EntityFramework\" />
   </ItemGroup>
 
 </Project>
