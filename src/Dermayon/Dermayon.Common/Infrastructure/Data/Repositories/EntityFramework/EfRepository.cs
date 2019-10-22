@@ -1,4 +1,5 @@
 ﻿using Dermayon.Common.Domain;
+using Dermayon.Common.Infrastructure.Data.Repositories.EntityFramework.UoW;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Dermayon.Common.Infrastructure.Data.Repositories.EntityFramework
 {
-    public class EfRepository<TEntity> : IEfRepository<TEntity> where TEntity : class
+    public class EfRepository<TEntity> : IEfRepository<TEntity> where TEntity : EntityBase
     {
         private readonly IUnitOfWork<DbContext> _unitOfWork;
         private readonly DbSet<TEntity> _dbSet = null;
@@ -21,17 +22,17 @@ namespace Dermayon.Common.Infrastructure.Data.Repositories.EntityFramework
             _dbSet = _unitOfWork.Context.Set<TEntity>();
         }
 
-        public IEnumerable<TEntity> Get()
+        public virtual IEnumerable<TEntity> Get()
             => _dbSet.AsEnumerable();
 
-        public TEntity GetById(object id)
+        public virtual TEntity GetById(object id)
             => _dbSet.Find(id);
-        public void Insert(TEntity entitiy)
+        public virtual void Insert(TEntity entitiy)
         {
             _dbSet.Attach(entitiy);
             _unitOfWork.Context.Entry(entitiy).State = EntityState.Added;
         }
-        public void InsertRange(List<TEntity> entitiy)
+        public virtual void InsertRange(List<TEntity> entitiy)
         {
             foreach (var item in entitiy)
             {
@@ -39,12 +40,12 @@ namespace Dermayon.Common.Infrastructure.Data.Repositories.EntityFramework
                 _unitOfWork.Context.Entry(item).State = EntityState.Added;
             }
         }
-        public void Update(TEntity entitiy)
+        public virtual void Update(TEntity entitiy)
         {
             _dbSet.Attach(entitiy);
             _unitOfWork.Context.Entry(entitiy).State = EntityState.Modified;
         }
-        public void UpdateRange(List<TEntity> entitiy)
+        public virtual void UpdateRange(List<TEntity> entitiy)
         {
             foreach (var item in entitiy)
             {
@@ -52,14 +53,12 @@ namespace Dermayon.Common.Infrastructure.Data.Repositories.EntityFramework
                 _unitOfWork.Context.Entry(item).State = EntityState.Modified;
             }
         }
-        public void Delete(TEntity entitiy)
+        public virtual void Delete(TEntity entitiy)
             => _dbSet.Remove(entitiy);
-        public void DeleteRange(List<TEntity> entities)
+        public virtual void DeleteRange(List<TEntity> entities)
             => _dbSet.RemoveRange(entities);
 
-
-
-        public IEnumerable<TEntity> GetInclude(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> includes = null, bool withTracking = true)
+        public virtual IEnumerable<TEntity> GetInclude(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> includes = null, bool withTracking = true)
         {
             IQueryable<TEntity> query = _dbSet;
 
@@ -79,7 +78,7 @@ namespace Dermayon.Common.Infrastructure.Data.Repositories.EntityFramework
 
         }
 
-        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> predicate, bool withTracking = true)
+        public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> predicate, bool withTracking = true)
         {
             IQueryable<TEntity> query = _dbSet;
             query = query.Where(predicate);
@@ -91,7 +90,7 @@ namespace Dermayon.Common.Infrastructure.Data.Repositories.EntityFramework
             return query.AsEnumerable();
         }
 
-        public IEnumerable<TEntity> GetInclude(Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> includes = null)
+        public virtual IEnumerable<TEntity> GetInclude(Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> includes = null)
         {
             IQueryable<TEntity> query = _dbSet;
 
@@ -103,10 +102,10 @@ namespace Dermayon.Common.Infrastructure.Data.Repositories.EntityFramework
             return query.AsEnumerable();
         }
 
-        public async Task<IEnumerable<TEntity>> GetAsync()
+        public virtual async Task<IEnumerable<TEntity>> GetAsync()
         => await _dbSet.ToListAsync();
 
-        public async Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate, bool withTracking = true)
+        public virtual async Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate, bool withTracking = true)
         {
             IQueryable<TEntity> query = _dbSet;
             query = query.Where(predicate);
@@ -118,7 +117,7 @@ namespace Dermayon.Common.Infrastructure.Data.Repositories.EntityFramework
             return await query.ToListAsync();
         }
 
-        public async Task<IEnumerable<TEntity>> GetIncludeAsync(Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> includes = null)
+        public virtual async Task<IEnumerable<TEntity>> GetIncludeAsync(Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> includes = null)
         {
             IQueryable<TEntity> query = _dbSet;
 
@@ -130,7 +129,7 @@ namespace Dermayon.Common.Infrastructure.Data.Repositories.EntityFramework
             return await query.ToListAsync();
         }
 
-        public async Task<IEnumerable<TEntity>> GetIncludeAsync(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> includes = null, bool withTracking = true)
+        public virtual async Task<IEnumerable<TEntity>> GetIncludeAsync(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> includes = null, bool withTracking = true)
         {
             IQueryable<TEntity> query = _dbSet;
 
@@ -149,8 +148,12 @@ namespace Dermayon.Common.Infrastructure.Data.Repositories.EntityFramework
             return await query.ToListAsync();
         }
 
-        public async Task<TEntity> GetByIdAsync(object id)
+        public virtual async Task<TEntity> GetByIdAsync(object id)
             => await _dbSet.FindAsync(id);
 
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+        }
     }
 }

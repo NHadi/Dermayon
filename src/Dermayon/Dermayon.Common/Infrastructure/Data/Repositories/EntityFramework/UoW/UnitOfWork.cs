@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dermayon.Common.Infrastructure.Data
+namespace Dermayon.Common.Infrastructure.Data.Repositories.EntityFramework.UoW
 {
     public class UnitOfWork<Tcontext> : IUnitOfWork<Tcontext> where Tcontext : DbContext
     {

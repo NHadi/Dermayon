@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dermayon.Common", "Dermayon.Common\Dermayon.Common.csproj", "{A60646AC-C198-4265-B0F7-7FF6DC6F0A06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dermayon.Common", "Dermayon.Common\Dermayon.Common.csproj", "{A60646AC-C198-4265-B0F7-7FF6DC6F0A06}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1455E066-A729-4F0B-ACE2-3F8F458618C1}"
 EndProject
