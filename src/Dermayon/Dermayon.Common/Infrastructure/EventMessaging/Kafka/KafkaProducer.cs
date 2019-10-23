@@ -70,7 +70,8 @@ namespace Dermayon.Common.Infrastructure.EventMessaging.Kafka
             var message = new EventMessage
             {
                 Name = attribute.Name,
-                EventData = JsonConvert.SerializeObject(@event, Options.SerializerSettings)
+                EventData = JsonConvert.SerializeObject(@event, Options.SerializerSettings),
+                Date = DateTime.Now
             };
 
             return JsonConvert.SerializeObject(message, Options.SerializerSettings);

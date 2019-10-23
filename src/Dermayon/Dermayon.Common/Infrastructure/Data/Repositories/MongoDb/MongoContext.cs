@@ -39,7 +39,7 @@ namespace Dermayon.Common.Infrastructure.Data.Repositories.MongoDb
         }
 
 
-        public async Task<int> SaveChanges()
+        public virtual async Task<int> SaveChanges()
         {
             using (Session = await MongoClient.StartSessionAsync())
             {
@@ -64,18 +64,18 @@ namespace Dermayon.Common.Infrastructure.Data.Repositories.MongoDb
             return _commands.Count;
         }
 
-        public IMongoCollection<T> GetCollection<T>(string name)
+        public virtual IMongoCollection<T> GetCollection<T>(string name)
         {
             return Database.GetCollection<T>(name);
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             Session?.Dispose();
             GC.SuppressFinalize(this);
         }
 
-        public void AddCommand(Func<Task> func)
+        public virtual void AddCommand(Func<Task> func)
         {
             _commands.Add(func);
         }

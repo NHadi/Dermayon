@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 
 namespace Dermayon.Common.Infrastructure.Data.Repositories.MongoDb.UoW
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWorkMongo<TContext> : IDisposable
+        where TContext : MongoContext
     {
+        TContext Context { get; }
         Task<bool> Commit();
     }
 }

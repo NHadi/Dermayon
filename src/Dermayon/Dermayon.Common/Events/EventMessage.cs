@@ -8,5 +8,6 @@ namespace Dermayon.Common.Events
     {
         public string Name { get; set; }
         public string EventData { get; set; }
+        public DateTime Date { get; set; }
     }
 }

@@ -69,7 +69,7 @@ namespace Dermayon.Common.Infrastructure.EventMessaging.Kafka
                     }
                     _log.Info($" received message on topic <{message.Topic}>", message.Value);
                     // 1: The received message is deserialized to an IntegrationEvent which contains the meta-data for handling the event.
-                    eventMessage = ParseAsKMessage(message);
+                    eventMessage = ParseAsEventMessage(message);
 
                     // 2: The meta-data is used to retrieve the registered message handler for this kind of message.
                     var handlerType = GetHandlerType(eventMessage);
@@ -114,7 +114,7 @@ namespace Dermayon.Common.Infrastructure.EventMessaging.Kafka
             await handler.Handle(JObject.Parse(integrationMessage.EventData), log, cancellationToken);
         }
 
-        protected virtual EventMessage ParseAsKMessage(Message<Ignore, string> message) =>
+        protected virtual EventMessage ParseAsEventMessage(Message<Ignore, string> message) =>
             JsonConvert.DeserializeObject<EventMessage>(message.Value);
 
         internal Type GetHandlerType(EventMessage message)
