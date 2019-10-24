@@ -25,3 +25,8 @@ this library developed with .net core 2.2
 Its very easy you just add DermayonBootsraper and Configurable just you want and just you need
 ![Image of guide](https://github.com/NHadi/Dermayon/blob/master/sources/images/guide.png)
 
+For Complete Documentation [On Process]
+
+# Install
+Manage Nuget Packages > Browse > "Dermayon.Library"
+![Image of CQRS](https://github.com/NHadi/Dermayon/blob/master/sources/images/nuget.png)
