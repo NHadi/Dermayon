@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Dermayon.Common.Infrastructure.EventMessaging.Kafka
+namespace Dermayon.Common.Infrastructure.EventMessaging
 {
     public abstract class HostedService : IHostedService
     {
