@@ -2,6 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Dermayon.Library</PackageId>
+    <Authors>Nurul Hadi</Authors>
+    <Product>Dermayon.Library</Product>
+    <Description>Dermayon Library is Libray for support build large application, distributed, scalable, microservices, cqrs, event sourcing, best architectural , and best design pattern</Description>
+    <PackageProjectUrl>https://github.com/NHadi/Dermayon</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/NHadi/Dermayon</RepositoryUrl>
+    <RepositoryType>Github</RepositoryType>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +20,13 @@
     <ProjectReference Include="..\Dermayon.Infrastructure.Data.EFRepositories\Dermayon.Infrastructure.Data.EFRepositories.csproj" />
     <ProjectReference Include="..\Dermayon.Infrastructure.Data.MongoRepositories\Dermayon.Infrastructure.Data.MongoRepositories.csproj" />
     <ProjectReference Include="..\Dermayon.Infrastructure.EvenMessaging.Kafka\Dermayon.Infrastructure.EvenMessaging.Kafka.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
