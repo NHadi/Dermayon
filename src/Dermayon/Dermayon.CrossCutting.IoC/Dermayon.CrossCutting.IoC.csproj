@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dermayon.Common\Dermayon.Common.csproj" />
+    <ProjectReference Include="..\Dermayon.Infrastructure.Data.DapperRepositories\Dermayon.Infrastructure.Data.DapperRepositories.csproj" />
+    <ProjectReference Include="..\Dermayon.Infrastructure.Data.EFRepositories\Dermayon.Infrastructure.Data.EFRepositories.csproj" />
+    <ProjectReference Include="..\Dermayon.Infrastructure.Data.MongoRepositories\Dermayon.Infrastructure.Data.MongoRepositories.csproj" />
+    <ProjectReference Include="..\Dermayon.Infrastructure.EvenMessaging.Kafka\Dermayon.Infrastructure.EvenMessaging.Kafka.csproj" />
+  </ItemGroup>
+
+</Project>
