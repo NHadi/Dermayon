@@ -1,4 +1,5 @@
 ﻿using Dermayon.Common.Infrastructure.Data;
+using Dermayon.Common.Infrastructure.Data.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;

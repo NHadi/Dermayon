@@ -1,11 +1,15 @@
 ﻿using Confluent.Kafka;
+using Confluent.Kafka.Serialization;
 using Dermayon.Common.CrossCutting;
 using Dermayon.Common.Events;
 using Dermayon.Common.Infrastructure.EventMessaging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
