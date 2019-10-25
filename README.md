@@ -6,8 +6,7 @@
 ![Image of Architecture](https://github.com/NHadi/Dermayon/blob/master/sources/images/architecture.png)
 
 
-Dermayon Library is Libray for support build large application, distributed, scalable, microservices, cqrs, event sourcing, best architectural , and best design pattern.
-this library developed with .net core 2.2
+Dermayon Library is Libray for supporting build large application,distributed application, scalable, microservices, cqrs, event sourcing, including generic ef repository pattern with unit of work, generic mongo repository pattern with unit of work, kafka, etc
 
 # Feature
 1. Kafka [Message Broker]
