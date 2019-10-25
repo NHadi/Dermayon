@@ -2,10 +2,30 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Dermayon Entity Framework Repositories, including Generic Ef and Unit Of Work</Description>
+    <Copyright>Dermayon Library</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/NHadi/Dermayon</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/NHadi/Dermayon</RepositoryUrl>
+    <PackageTags>unit-of-work generic-repository entity-framework</PackageTags>
+    <Authors>Nurul Hadi</Authors>
+    <Company>Nurul Hadi</Company>
+    <Product>Dermayon Library</Product>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Dermayon.Common\Dermayon.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

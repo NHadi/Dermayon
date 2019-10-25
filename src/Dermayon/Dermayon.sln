@@ -7,13 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dermayon.Common", "Dermayon
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1455E066-A729-4F0B-ACE2-3F8F458618C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dermayon.Infrastructure.Data.EFRepositories", "Dermayon.Infrastructure.Data.EFRepositories\Dermayon.Infrastructure.Data.EFRepositories.csproj", "{76EDFCA1-7737-434A-A5C2-B9EE6B2CABD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dermayon.Infrastructure.Data.EFRepositories", "Dermayon.Infrastructure.Data.EFRepositories\Dermayon.Infrastructure.Data.EFRepositories.csproj", "{76EDFCA1-7737-434A-A5C2-B9EE6B2CABD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dermayon.Infrastructure.Data.MongoRepositories", "Dermayon.Infrastructure.Data.MongoRepositories\Dermayon.Infrastructure.Data.MongoRepositories.csproj", "{E35216FD-4D13-4074-9BA1-DE2A2ADE1019}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dermayon.Infrastructure.Data.MongoRepositories", "Dermayon.Infrastructure.Data.MongoRepositories\Dermayon.Infrastructure.Data.MongoRepositories.csproj", "{E35216FD-4D13-4074-9BA1-DE2A2ADE1019}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dermayon.CrossCutting.IoC", "Dermayon.CrossCutting.IoC\Dermayon.CrossCutting.IoC.csproj", "{FB5F72C5-3A2D-4ED2-AB59-D680F478A050}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dermayon.CrossCutting.IoC", "Dermayon.CrossCutting.IoC\Dermayon.CrossCutting.IoC.csproj", "{FB5F72C5-3A2D-4ED2-AB59-D680F478A050}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dermayon.Infrastructure.Data.DapperRepositories", "Dermayon.Infrastructure.Data.DapperRepositories\Dermayon.Infrastructure.Data.DapperRepositories.csproj", "{71F4A091-D76E-4854-B4BE-CA7ECCC38ED1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dermayon.Infrastructure.Data.DapperRepositories", "Dermayon.Infrastructure.Data.DapperRepositories\Dermayon.Infrastructure.Data.DapperRepositories.csproj", "{71F4A091-D76E-4854-B4BE-CA7ECCC38ED1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{0F14EE9C-921F-431C-8192-FBEE24D79A01}"
 EndProject
@@ -25,11 +25,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{33F2B70F-A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "files", "files", "{74214115-E0B1-459C-9540-A528522CC77E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dermayon.Infrastructure.Files.FTP", "Dermayon.Infrastructure.Files.FTP\Dermayon.Infrastructure.Files.FTP.csproj", "{DB3E49B3-79AF-4699-9AB3-4A66AAA32D11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dermayon.Infrastructure.Files.FTP", "Dermayon.Infrastructure.Files.FTP\Dermayon.Infrastructure.Files.FTP.csproj", "{DB3E49B3-79AF-4699-9AB3-4A66AAA32D11}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "messaging", "messaging", "{14180DAC-668D-413C-96A6-30359F0AD526}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dermayon.Infrastructure.EvenMessaging.Kafka", "Dermayon.Infrastructure.EvenMessaging.Kafka\Dermayon.Infrastructure.EvenMessaging.Kafka.csproj", "{7A81F43E-87EE-4B9A-B608-5495EBEB3CC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dermayon.Infrastructure.EvenMessaging.Kafka", "Dermayon.Infrastructure.EvenMessaging.Kafka\Dermayon.Infrastructure.EvenMessaging.Kafka.csproj", "{7A81F43E-87EE-4B9A-B608-5495EBEB3CC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{4BFBB963-5304-4707-8933-37A5B8E3519D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,10 @@ Global
 		{7A81F43E-87EE-4B9A-B608-5495EBEB3CC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A81F43E-87EE-4B9A-B608-5495EBEB3CC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A81F43E-87EE-4B9A-B608-5495EBEB3CC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BFBB963-5304-4707-8933-37A5B8E3519D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BFBB963-5304-4707-8933-37A5B8E3519D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BFBB963-5304-4707-8933-37A5B8E3519D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BFBB963-5304-4707-8933-37A5B8E3519D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

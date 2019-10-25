@@ -17,17 +17,10 @@ namespace Dermayon.CrossCutting.IoC
     {
         public readonly IServiceCollection Services;
         protected readonly IConfiguration Configuration;
-        public DermayonBootsraper(IServiceCollection services, string path, string environtment)
+        public DermayonBootsraper(IServiceCollection services, IConfiguration configuration)
         {
             Services = services;
-
-
-            var configurationBuilder = new ConfigurationBuilder()
-                .SetBasePath(path)
-                .AddJsonFile("dermayonAppConfig.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"dermayonAppConfig.{environtment}.json", reloadOnChange: true, optional: true);
-
-            Configuration = configurationBuilder.Build();
+            Configuration = configuration;
         }
         public DermayonBootsraper InitBootsraper()
         {
@@ -44,12 +37,10 @@ namespace Dermayon.CrossCutting.IoC
 
         public DermayonBootsraper InitKafka(Action<KafkaEventConsumerConfiguration> Consumer = null)
         {
-            Services.Configure<KafkaEventConsumerConfiguration>(Configuration.GetSection("KafkaConsumer"));
             Services.PostConfigure(Consumer);
 
             Services.AddSingleton<IHostedService, KafkaConsumer>();
-
-            Services.Configure<KafkaEventProducerConfiguration>(Configuration.GetSection("KafkaProducer"));
+            
             Services.PostConfigure<KafkaEventProducerConfiguration>(options =>
             {
                 options.SerializerSettings =
