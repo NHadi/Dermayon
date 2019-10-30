@@ -13,13 +13,22 @@ namespace Dermayon.Infrastructure.Data.MongoRepositories.UoW
         public UnitOfWorkMongo(Tcontext context) => Context = context;
         public async Task<bool> Commit()
         {
-            var changeAmount = await Context.SaveChanges();
+            try
+            {
+                var changeAmount = await Context.SaveChanges();
 
-            return changeAmount > 0;
+                return changeAmount > 0;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
         }
 
         public void Dispose()
-        => Context.Dispose();
+        => Context?.Dispose();
 
     }
 }
