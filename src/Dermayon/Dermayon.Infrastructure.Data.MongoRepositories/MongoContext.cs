@@ -62,15 +62,23 @@ namespace Dermayon.Infrastructure.Data.MongoRepositories
             {
                 Session.StartTransaction();
 
-                var commandTasks = _commands.Select(c => c());
+                try
+                {
+                    var commandTasks = _commands.Select(c => c());
 
-                await Task.WhenAll(commandTasks);
+                    await Task.WhenAll(commandTasks);
 
-                await Session.CommitTransactionAsync();
+                    await Session.CommitTransactionAsync();
+                }
+                catch (Exception ex)
+                {
+                    await Session.AbortTransactionAsync();
+                    _commands.Clear();
+                    throw ex;
+                }
             }
 
             _commands.Clear();
-
             return result;
         }
 
