@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..</DockerfileContext>
+    <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.5" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.1.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="CqrsEventSourcing\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Dermayon.Common\Dermayon.Common.csproj" />
+    <ProjectReference Include="..\..\..\Dermayon.CrossCutting.IoC\Dermayon.CrossCutting.IoC.csproj" />
+    <ProjectReference Include="..\..\..\Dermayon.Infrastructure.Data.DapperRepositories\Dermayon.Infrastructure.Data.DapperRepositories.csproj" />
+    <ProjectReference Include="..\..\..\Dermayon.Infrastructure.Data.EFRepositories\Dermayon.Infrastructure.Data.EFRepositories.csproj" />
+    <ProjectReference Include="..\..\..\Dermayon.Infrastructure.Data.MongoRepositories\Dermayon.Infrastructure.Data.MongoRepositories.csproj" />
+    <ProjectReference Include="..\..\..\Dermayon.Infrastructure.EvenMessaging.Kafka\Dermayon.Infrastructure.EvenMessaging.Kafka.csproj" />
+  </ItemGroup>
+
+</Project>
