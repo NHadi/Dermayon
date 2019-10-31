@@ -6,7 +6,8 @@ using System.Text;
 
 namespace Dermayon.Infrastructure.Data.MongoRepositories.Contracts
 {
-    public interface IMongoDbRepository<TEntity> : IRepository<TEntity>, IReadOnlyRepository<TEntity>
+    public interface IMongoDbRepository<TContext, TEntity> : IEventRepository<TEntity>, IRepository<TEntity>, IReadOnlyRepository<TEntity>
+        where TContext : MongoContext
          where TEntity : class
     {
     }

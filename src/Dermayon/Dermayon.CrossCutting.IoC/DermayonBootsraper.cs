@@ -1,64 +1,41 @@
 ﻿using Dermayon.Common.CrossCutting;
 using Dermayon.Common.Infrastructure.Data;
 using Dermayon.Common.Infrastructure.Data.Contracts;
-using Dermayon.CrossCutting.IoC.Infrastructure;
 using Dermayon.Infrastructure.EvenMessaging.Kafka;
 using Dermayon.Infrastructure.EvenMessaging.Kafka.Contracts;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
 
-namespace Dermayon.CrossCutting.IoC
+namespace Microsoft.Extensions.DependencyInjection
 {
-    public class DermayonBootsraper
+    public static class DermayonBootsraper
     {
-        public readonly IServiceCollection Services;
-        protected readonly IConfiguration Configuration;
-        public DermayonBootsraper(IServiceCollection services, string path, string environtment)
-        {
-            Services = services;
-
-
-            var configurationBuilder = new ConfigurationBuilder()
-                .SetBasePath(path)
-                .AddJsonFile("dermayonAppConfig.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"dermayonAppConfig.{environtment}.json", reloadOnChange: true, optional: true);
-
-            Configuration = configurationBuilder.Build();
-        }
-        public DermayonBootsraper InitBootsraper()
+        public static IServiceCollection InitDermayonBootsraper(this IServiceCollection services)
         {
             var log = new Log();
-            Services.AddSingleton<ILog>(log);
-            return this;
-        }
-        public DermayonBootsraper InitRepositoryBootsraper(Action<RepositoryBootsraper> Repository = null)
+            services.AddSingleton<ILog>(log);
+
+            services.AddTransient<IDbConectionFactory, DbConectionFactory>();
+            return services;
+        }        
+
+        public static IServiceCollection InitKafka(this IServiceCollection services, Action<KafkaEventConsumerConfiguration> Consumer = null)
         {
-            Services.AddTransient<IDbConectionFactory, DbConectionFactory>();
-            Services.PostConfigure(Repository);
-            return this;
-        }
+            services.PostConfigure(Consumer);
 
-        public DermayonBootsraper InitKafka(Action<KafkaEventConsumerConfiguration> Consumer = null)
-        {
-            Services.Configure<KafkaEventConsumerConfiguration>(Configuration.GetSection("KafkaConsumer"));
-            Services.PostConfigure(Consumer);
+            services.AddSingleton<IHostedService, KafkaConsumer>();
 
-            Services.AddSingleton<IHostedService, KafkaConsumer>();
-
-            Services.Configure<KafkaEventProducerConfiguration>(Configuration.GetSection("KafkaProducer"));
-            Services.PostConfigure<KafkaEventProducerConfiguration>(options =>
+            services.PostConfigure<KafkaEventProducerConfiguration>(options =>
             {
                 options.SerializerSettings =
                     new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
             });
 
-            Services.AddTransient<IKakfaProducer, KafkaProducer>();
+            services.AddTransient<IKakfaProducer, KafkaProducer>();
 
-            return this;
+            return services;
         }
     }
 }

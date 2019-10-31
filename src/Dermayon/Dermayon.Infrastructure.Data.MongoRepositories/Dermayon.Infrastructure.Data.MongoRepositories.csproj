@@ -2,10 +2,30 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Dermayon MongoRepositories, including Generic Mongo and Unit Of Work</Description>
+    <PackageProjectUrl>https://github.com/NHadi/Dermayon</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/NHadi/Dermayon</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageTags>unit-of-work generic-repository mongo-db</PackageTags>
+    <Authors>Nurul Hadi</Authors>
+    <Company />
+    <Product>Dermayon Library</Product>
+    <Copyright>Dermayon Library</Copyright>
+    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Dermayon.Common\Dermayon.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

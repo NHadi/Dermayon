@@ -2,10 +2,29 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Dermayon Kafka, including Kafka</Description>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/NHadi/Dermayon</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/NHadi/Dermayon</RepositoryUrl>
+    <PackageTags>kafka</PackageTags>
+    <Version>1.0.1</Version>
+    <Authors>Nurul Hadi</Authors>
+    <Product>Dermayon Library</Product>
+    <Copyright>Dermayon Library</Copyright>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Dermayon.Common\Dermayon.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

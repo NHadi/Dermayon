@@ -10,26 +10,21 @@ using System.Threading.Tasks;
 
 namespace Dermayon.Infrastructure.Data.MongoRepositories
 {
-    public class MongoContext : IMongoContext
+    public class MongoContext
     {
         protected readonly IMongoDatabase Database;
         protected readonly List<Func<Task>> _commands;
-        protected readonly ILog _log;
 
         public IClientSessionHandle Session { get; set; }
         public MongoClient MongoClient { get; set; }
 
-        public MongoContext(MongoDbSettings settings, ILog log)
+        public MongoContext(MongoDbSettings settings)
         {
-            _log = log;
-
             Ensure.That(settings).IsNotNull();
-            Ensure.String.IsNotNullOrEmpty(settings.ServerConnection);
-            Ensure.String.IsNotNullOrEmpty(settings.Database);
 
-            var client = new MongoClient(settings.ServerConnection);
+            MongoClient = new MongoClient(settings.ServerConnection);
 
-            Database = client.GetDatabase(settings.Database,
+            Database = MongoClient.GetDatabase(settings.Database,
                 new MongoDatabaseSettings
                 {
                     GuidRepresentation = GuidRepresentation.Standard
@@ -39,9 +34,27 @@ namespace Dermayon.Infrastructure.Data.MongoRepositories
             _commands = new List<Func<Task>>();
         }
 
+        public MongoContext(MongoCredentialDbSettings settings)
+        {
+            Ensure.That(settings).IsNotNull();
+
+            MongoClient = new MongoClient(settings.MongoClientSettings);
+
+
+            Database = MongoClient.GetDatabase(settings.Database,
+                new MongoDatabaseSettings
+                {
+                    GuidRepresentation = GuidRepresentation.Standard
+                });
+
+            // Every command will be stored and it'll be processed at SaveChanges
+            _commands = new List<Func<Task>>();
+        }
 
         public virtual async Task<int> SaveChanges()
         {
+            var result = _commands.Count;
+
             using (Session = await MongoClient.StartSessionAsync())
             {
                 Session.StartTransaction();
@@ -56,13 +69,14 @@ namespace Dermayon.Infrastructure.Data.MongoRepositories
                 }
                 catch (Exception ex)
                 {
-                    _log.Error("Error writing to MongoDB:", ex);
                     await Session.AbortTransactionAsync();
-                    return 0;
+                    _commands.Clear();
+                    throw ex;
                 }
-
             }
-            return _commands.Count;
+
+            _commands.Clear();
+            return result;
         }
 
         public virtual IMongoCollection<T> GetCollection<T>(string name)

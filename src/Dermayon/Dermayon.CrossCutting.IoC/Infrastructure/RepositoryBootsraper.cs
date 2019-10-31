@@ -6,29 +6,27 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dermayon.CrossCutting.IoC.Infrastructure
+namespace Microsoft.Extensions.DependencyInjection
 {
-    public class RepositoryBootsraper
+    public static class RepositoryBootsraper
     {
-        public RepositoryBootsraper RegisterMongo(IServiceCollection Services, Action<MongoBootsraper> action = null)
+        public static IServiceCollection RegisterMongo(this IServiceCollection Services)
         {
-            Services.PostConfigure(action);
             MongoBootsraper.RegisterServices(Services);
-            return this;
+            return Services;
         }
 
-        public RepositoryBootsraper RegisterEf(IServiceCollection Services, Action<EfBootsraper> action = null)
+
+        public static IServiceCollection RegisterEf(this IServiceCollection Services)
         {
             EfBootsraper.RegisterServices(Services);
-            Services.PostConfigure(action);
-            return this;
+            return Services;
         }
 
-        public RepositoryBootsraper RegisterDapper(IServiceCollection Services, Action<DapperBootsraper> action = null)
+        public static IServiceCollection RegisterDapper(this IServiceCollection Services)
         {
-            Services.PostConfigure(action);
             DapperBootsraper.RegisterServices(Services);
-            return this;
+            return Services;
         }
 
     }
