@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  dermayon.sample.socialmedia.user:
+    image: ${DOCKER_REGISTRY-}dermayonsamplesocialmediauser
+    build:
+      context: .
+      dockerfile: samples/SocialMedia/Dermayon.Sample.SocialMedia.User/Dockerfile
+    ports:
+      - 80
