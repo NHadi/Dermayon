@@ -10,7 +10,7 @@ namespace Dermayon.Infrastructure.Data.MongoRepositories
     public class MongoBootsraper
     {
         public static void RegisterServices(IServiceCollection services)
-        {            
+        {
             services.AddScoped(typeof(IMongoDbRepository<,>), typeof(MongoDbRepository<,>));
             services.AddScoped(typeof(IUnitOfWorkMongo<>), typeof(UnitOfWorkMongo<>));
         }

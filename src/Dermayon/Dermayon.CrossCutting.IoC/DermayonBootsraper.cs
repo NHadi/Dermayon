@@ -1,55 +1,41 @@
 ﻿using Dermayon.Common.CrossCutting;
 using Dermayon.Common.Infrastructure.Data;
 using Dermayon.Common.Infrastructure.Data.Contracts;
-using Dermayon.CrossCutting.IoC.Infrastructure;
 using Dermayon.Infrastructure.EvenMessaging.Kafka;
 using Dermayon.Infrastructure.EvenMessaging.Kafka.Contracts;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
 
-namespace Dermayon.CrossCutting.IoC
+namespace Microsoft.Extensions.DependencyInjection
 {
-    public class DermayonBootsraper
+    public static class DermayonBootsraper
     {
-        public readonly IServiceCollection Services;
-        protected readonly IConfiguration Configuration;
-        public DermayonBootsraper(IServiceCollection services, IConfiguration configuration)
-        {
-            Services = services;
-            Configuration = configuration;
-        }
-        public DermayonBootsraper InitBootsraper()
+        public static IServiceCollection InitDermayonBootsraper(this IServiceCollection services)
         {
             var log = new Log();
-            Services.AddSingleton<ILog>(log);
-            return this;
-        }
-        public DermayonBootsraper InitRepositoryBootsraper(Action<RepositoryBootsraper> Repository = null)
-        {
-            Services.AddTransient<IDbConectionFactory, DbConectionFactory>();
-            Services.PostConfigure(Repository);
-            return this;
-        }
+            services.AddSingleton<ILog>(log);
 
-        public DermayonBootsraper InitKafka(Action<KafkaEventConsumerConfiguration> Consumer = null)
-        {
-            Services.PostConfigure(Consumer);
+            services.AddTransient<IDbConectionFactory, DbConectionFactory>();
+            return services;
+        }        
 
-            Services.AddSingleton<IHostedService, KafkaConsumer>();
-            
-            Services.PostConfigure<KafkaEventProducerConfiguration>(options =>
+        public static IServiceCollection InitKafka(this IServiceCollection services, Action<KafkaEventConsumerConfiguration> Consumer = null)
+        {
+            services.PostConfigure(Consumer);
+
+            services.AddSingleton<IHostedService, KafkaConsumer>();
+
+            services.PostConfigure<KafkaEventProducerConfiguration>(options =>
             {
                 options.SerializerSettings =
                     new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
             });
 
-            Services.AddTransient<IKakfaProducer, KafkaProducer>();
+            services.AddTransient<IKakfaProducer, KafkaProducer>();
 
-            return this;
+            return services;
         }
     }
 }

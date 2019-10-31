@@ -22,26 +22,7 @@ namespace Dermayon.Infrastructure.Data.MongoRepositories
         {
             Ensure.That(settings).IsNotNull();
 
-            if (settings.Credential == null)
-            {
-                MongoClient = new MongoClient(settings.ServerConnection);
-            }
-            else
-            {
-                MongoClient = new MongoClient(new MongoClientSettings
-                {
-                    Server = MongoServerAddress.Parse(settings.ServerConnection),
-                    Credential = MongoCredential.CreateCredential(settings.Credential.Db, settings.Credential.User, settings.Credential.Password),
-                    AllowInsecureTls = true,
-                    SslSettings = new SslSettings
-                    {
-                        CheckCertificateRevocation = false
-                    },
-                    UseTls = false
-                });
-            }
-
-           
+            MongoClient = new MongoClient(settings.ServerConnection);
 
             Database = MongoClient.GetDatabase(settings.Database,
                 new MongoDatabaseSettings
@@ -53,6 +34,22 @@ namespace Dermayon.Infrastructure.Data.MongoRepositories
             _commands = new List<Func<Task>>();
         }
 
+        public MongoContext(MongoCredentialDbSettings settings)
+        {
+            Ensure.That(settings).IsNotNull();
+
+            MongoClient = new MongoClient(settings.MongoClientSettings);
+
+
+            Database = MongoClient.GetDatabase(settings.Database,
+                new MongoDatabaseSettings
+                {
+                    GuidRepresentation = GuidRepresentation.Standard
+                });
+
+            // Every command will be stored and it'll be processed at SaveChanges
+            _commands = new List<Func<Task>>();
+        }
 
         public virtual async Task<int> SaveChanges()
         {
