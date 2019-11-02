@@ -36,10 +36,11 @@ namespace Sample.SocialMedia.UserActivity
         public void ConfigureServices(IServiceCollection services)
         {
             services.InitDermayonBootsraper()
-                   //.InitKafka()
-                   //    .Configure<KafkaEventConsumerConfiguration>(Configuration.GetSection("KafkaConsumer"))
-                   //    .Configure<KafkaEventProducerConfiguration>(Configuration.GetSection("KafkaProducer"))
-                   //.RegisterKafkaConsumer<UserCreatedEvent, UserCreatedEventHandler>()
+                    // Set Kafka Configuration
+                   .InitKafka()
+                       .Configure<KafkaEventConsumerConfiguration>(Configuration.GetSection("KafkaConsumer"))
+                       .Configure<KafkaEventProducerConfiguration>(Configuration.GetSection("KafkaProducer"))
+                   .RegisterKafkaConsumer<UserCreatedEvent, UserCreatedEventHandler>()
                    // Implement CQRS Event Sourcing => UserContextEvents [Commands]
                    .RegisterEventSources()
                        .RegisterMongoContext<UserContextEvents, UserContextEventSetting>
@@ -51,7 +52,6 @@ namespace Sample.SocialMedia.UserActivity
                            (Configuration.GetSection("ConnectionStrings:AccountUser")
                            .Get<UserContextSetting>());
 
-            ConfigureKafka(services);
             ConfigureCommandHandlers(services);
             ConfigureEventHandlers(services);
             ConfigureApplicationServices(services);
@@ -74,23 +74,7 @@ namespace Sample.SocialMedia.UserActivity
 
             app.UseMvc();
         }
-
-        private void ConfigureKafka(IServiceCollection services)
-        {
-            services.Configure<KafkaEventConsumerConfiguration>(Configuration.GetSection("KafkaConsumer"));
-            services.PostConfigure<KafkaEventConsumerConfiguration>(options =>
-            {
-                options.RegisterConsumer<UserCreatedEvent, UserCreatedEventHandler>();
-            });
-            services.AddSingleton<IHostedService, KafkaConsumer>();
-            services.Configure<KafkaEventProducerConfiguration>(Configuration.GetSection("KafkaProducer"));
-            services.PostConfigure<KafkaEventProducerConfiguration>(options =>
-            {
-                options.SerializerSettings =
-                    new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
-            });
-            services.AddTransient<IKakfaProducer, KafkaProducer>();
-        }
+        
         private static void ConfigureAutoMapper(IServiceCollection services)
         {
             var mapperConfig = new MapperConfiguration(cfg =>
