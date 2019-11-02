@@ -11,8 +11,8 @@ namespace Dermayon.Infrastructure.Data.EFRepositories
     {
         public static void RegisterServices(IServiceCollection services)
         {
-            services.AddScoped(typeof(IEfRepository<>), typeof(EfRepository<>));
-            services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
+            services.AddTransient(typeof(IEfRepository<>), typeof(EfRepository<>));
+            services.AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
         }
     }
 }

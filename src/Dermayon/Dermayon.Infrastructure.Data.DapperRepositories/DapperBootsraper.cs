@@ -10,7 +10,7 @@ namespace Dermayon.Infrastructure.Data.DapperRepositories
     {
         public static void RegisterServices(IServiceCollection services)
         {
-            services.AddScoped(typeof(IDapperRepository<>), typeof(DapperRepository<>));
+            services.AddTransient(typeof(IDapperRepository<>), typeof(DapperRepository<>));
         }
     }
 }

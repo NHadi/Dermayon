@@ -1,5 +1,6 @@
 ﻿using Dermayon.Infrastructure.Data.DapperRepositories;
 using Dermayon.Infrastructure.Data.EFRepositories;
+using Dermayon.Infrastructure.Data.EventSources;
 using Dermayon.Infrastructure.Data.MongoRepositories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -26,6 +27,12 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection RegisterDapper(this IServiceCollection Services)
         {
             DapperBootsraper.RegisterServices(Services);
+            return Services;
+        }
+
+        public static IServiceCollection RegisterEventSources(this IServiceCollection Services)
+        {
+            EventSourceRepositoryBootsraper.RegisterServices(Services);
             return Services;
         }
 

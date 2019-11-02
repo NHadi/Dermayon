@@ -2,23 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>Dermayon Dapper Repositories, including Generic CRUD Dapper</Description>
+    <Version>2.0.0</Version>
+    <Authors>Nurul Hadi</Authors>
+    <Company>Nurul Hadi</Company>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/NHadi/Dermayon</PackageProjectUrl>
     <RepositoryUrl>https://github.com/NHadi/Dermayon</RepositoryUrl>
-    <Copyright>Dermayon Library</Copyright>
-    <PackageTags>dapper-repository</PackageTags>
-    <Authors>Nurul Hadi</Authors>
-    <Company></Company>
-    <Product>Dermayon.Library</Product>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
-    <Version>2.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Dermayon.Common\Dermayon.Common.csproj" />
+    <ProjectReference Include="..\Dermayon.Infrastructure.Data.MongoRepositories\Dermayon.Infrastructure.Data.MongoRepositories.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,10 +20,6 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.30" />
   </ItemGroup>
 
 </Project>

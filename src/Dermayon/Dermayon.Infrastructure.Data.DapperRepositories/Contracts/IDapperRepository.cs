@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Dermayon.Infrastructure.Data.DapperRepositories.Contracts
 {
-    public interface IDapperRepository<TEntity> where TEntity : class
+    public interface IDapperRepository<TEntity> : IDisposable where TEntity : class
     {
         IEnumerable<TEntity> Query(string query = null, object param = null);
         Task<IEnumerable<TEntity>> QueryAsync(string query = null, object param = null);

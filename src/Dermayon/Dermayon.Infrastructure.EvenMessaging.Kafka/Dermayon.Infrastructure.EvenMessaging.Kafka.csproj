@@ -1,19 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Dermayon Kafka, including Kafka</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/NHadi/Dermayon</PackageProjectUrl>
     <RepositoryUrl>https://github.com/NHadi/Dermayon</RepositoryUrl>
     <PackageTags>kafka</PackageTags>
-    <Version>1.0.1</Version>
+    <Version>2.0.0</Version>
     <Authors>Nurul Hadi</Authors>
     <Product>Dermayon Library</Product>
     <Copyright>Dermayon Library</Copyright>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <FileVersion>1.0.0.1</FileVersion>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,6 +25,10 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Confluent.Kafka" Version="0.11.6" />
   </ItemGroup>
 
 </Project>

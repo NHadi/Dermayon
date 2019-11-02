@@ -54,5 +54,10 @@ namespace Dermayon.Infrastructure.Data.DapperRepositories
                 await _connection.ExecuteAsync(query, param);
             }
         }
+
+        public void Dispose()
+        {
+            _connection.Close();
+        }
     }
 }

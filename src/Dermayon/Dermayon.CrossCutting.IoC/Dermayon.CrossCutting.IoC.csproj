@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Dermayon.Library</PackageId>
     <Authors>Nurul Hadi</Authors>
@@ -13,15 +13,16 @@
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>microservices cqrs event-sourcing generic-repository kafka mongo</PackageTags>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <FileVersion>1.0.0.1</FileVersion>
-    <Version>1.0.1</Version>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Version>2.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Dermayon.Common\Dermayon.Common.csproj" />
     <ProjectReference Include="..\Dermayon.Infrastructure.Data.DapperRepositories\Dermayon.Infrastructure.Data.DapperRepositories.csproj" />
     <ProjectReference Include="..\Dermayon.Infrastructure.Data.EFRepositories\Dermayon.Infrastructure.Data.EFRepositories.csproj" />
+    <ProjectReference Include="..\Dermayon.Infrastructure.Data.EventSources\Dermayon.Infrastructure.Data.EventSources.csproj" />
     <ProjectReference Include="..\Dermayon.Infrastructure.Data.MongoRepositories\Dermayon.Infrastructure.Data.MongoRepositories.csproj" />
     <ProjectReference Include="..\Dermayon.Infrastructure.EvenMessaging.Kafka\Dermayon.Infrastructure.EvenMessaging.Kafka.csproj" />
   </ItemGroup>

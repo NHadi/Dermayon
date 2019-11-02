@@ -3,6 +3,7 @@ using Dermayon.Common.Infrastructure.Data;
 using Dermayon.Common.Infrastructure.Data.Contracts;
 using Dermayon.Infrastructure.EvenMessaging.Kafka;
 using Dermayon.Infrastructure.EvenMessaging.Kafka.Contracts;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -19,12 +20,10 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddTransient<IDbConectionFactory, DbConectionFactory>();
             return services;
-        }        
+        }
 
-        public static IServiceCollection InitKafka(this IServiceCollection services, Action<KafkaEventConsumerConfiguration> Consumer = null)
+        public static IServiceCollection InitKafka(this IServiceCollection services)
         {
-            services.PostConfigure(Consumer);
-
             services.AddSingleton<IHostedService, KafkaConsumer>();
 
             services.PostConfigure<KafkaEventProducerConfiguration>(options =>
@@ -36,6 +35,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddTransient<IKakfaProducer, KafkaProducer>();
 
             return services;
-        }
+        }        
+
+
     }
 }

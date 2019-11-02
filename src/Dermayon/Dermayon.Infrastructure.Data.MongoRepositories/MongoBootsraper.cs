@@ -11,8 +11,8 @@ namespace Dermayon.Infrastructure.Data.MongoRepositories
     {
         public static void RegisterServices(IServiceCollection services)
         {
-            services.AddScoped(typeof(IMongoDbRepository<,>), typeof(MongoDbRepository<,>));
-            services.AddScoped(typeof(IUnitOfWorkMongo<>), typeof(UnitOfWorkMongo<>));
+            services.AddTransient(typeof(IMongoDbRepository<,>), typeof(MongoDbRepository<,>));
+            services.AddTransient(typeof(IUnitOfWorkMongo<>), typeof(UnitOfWorkMongo<>));
         }
     }
 }
