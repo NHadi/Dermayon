@@ -1,11 +1,12 @@
 version: '3.4'
 
 services:
-  dermayon.sample.socialmedia.user:
+  sample.socialmedia.useractivity:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "80"
+
 
   kafkaserver:
     image: "spotify/kafka:latest"
@@ -20,7 +21,7 @@ services:
     image: mongo
     restart: always
     ports:
-      - 27017
+      - 27018:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password

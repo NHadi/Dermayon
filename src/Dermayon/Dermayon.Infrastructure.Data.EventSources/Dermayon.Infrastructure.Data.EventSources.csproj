@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dermayon.Common\Dermayon.Common.csproj" />
+    <ProjectReference Include="..\Dermayon.Infrastructure.Data.MongoRepositories\Dermayon.Infrastructure.Data.MongoRepositories.csproj" />
+  </ItemGroup>
+
+</Project>

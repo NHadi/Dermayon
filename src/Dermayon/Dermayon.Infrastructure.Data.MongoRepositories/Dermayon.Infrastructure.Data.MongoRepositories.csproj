@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Dermayon MongoRepositories, including Generic Mongo and Unit Of Work</Description>
     <PackageProjectUrl>https://github.com/NHadi/Dermayon</PackageProjectUrl>
@@ -26,6 +26,11 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Bson" Version="2.9.2" />
+    <PackageReference Include="MongoDB.Driver" Version="2.9.2" />
   </ItemGroup>
 
 </Project>

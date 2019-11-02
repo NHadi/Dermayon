@@ -1,4 +1,5 @@
 ﻿using Dermayon.Common.CrossCutting;
+using Dermayon.Common.Infrastructure.Data.Contracts;
 using Dermayon.Infrastructure.Data.MongoRepositories.Contracts;
 using EnsureThat;
 using MongoDB.Bson;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Dermayon.Infrastructure.Data.MongoRepositories
 {
-    public class MongoContext
+    public class MongoContext : IDermayonContext
     {
         protected readonly IMongoDatabase Database;
         protected readonly List<Func<Task>> _commands;
