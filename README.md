@@ -26,11 +26,12 @@ Its very easy you just add DermayonBootsraper and Configurable just you want and
 
 For Complete Documentation [On Process]
 
+# Configuration
+![Image of guide](https://github.com/NHadi/Dermayon/blob/master/sources/images/appsetting.png)
+
 # Install
 Manage Nuget Packages > Browse > "Dermayon.Library"
-![Image of CQRS](https://github.com/NHadi/Dermayon/blob/master/sources/images/nuget.png)
 
 # Want to Contribute ? i'm really hapy, open to contribute for any level any country 
-
 this is my overall design for this library
 https://drive.google.com/drive/folders/1WjzheSPXemmPWqpaZDJhxFeQmDYx23BN
