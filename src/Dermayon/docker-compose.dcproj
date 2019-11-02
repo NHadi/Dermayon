@@ -3,10 +3,10 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>cad9f304-6a28-43dd-9f93-c46d2688d0fa</ProjectGuid>
+    <ProjectGuid>b52238d4-04c9-4563-b44a-b610acd94dd2</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>dermayon.sample.socialmedia.user</DockerServiceName>
+    <DockerServiceName>sample.socialmedia.useractivity</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">

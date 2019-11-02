@@ -4,5 +4,6 @@ using System.Text;
 
 namespace Dermayon.Common.Events
 {
-    public interface IEvent { }
+    public interface IEvent { 
+    }
 }
