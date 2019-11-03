@@ -1,7 +1,5 @@
 # Dermayon 
 
-# = ON DEVELOP =
-
 # Architecture of Library
 ![Image of Architecture](https://github.com/NHadi/Dermayon/blob/master/sources/images/architecture.png)
 
